@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import math
-import numpy
-import matplotlib.pyplot as mpp
+import math  # Библиотека, содержащая популярные математические функции и константы. Например: число Пи, логарифмы, тригонометрические функции 
+import numpy  # Библиотека Python с массивами, матрицами и функциями для них 
+import matplotlib.pyplot as mpp  # Библиотека для построения графиков
 
 # Эта программа рисует график функции, заданной выражением ниже
 
-if __name__=='__main__':
-    arguments = numpy.arange(0, 200, 0.1)
-    mpp.plot(
-        arguments,
-        [math.sin(a) * math.sin(a/20.0) for a in arguments]
+if __name__=='__main__':  # Поверяет запущена программа прямо или через import. TRUE - прямо; FALSE - через import. Если запущена прямо, то начнут выполняться операторы, иначе программа закончится
+    arguments = numpy.arange(0, 200, 0.1)  # Переменной arguments, тип NDArray (массив), присвоено значение от 0 до 200 с шагом 0.1, то есть 0, 0.1, 0.2, 0.3, ..., 200
+    mpp.plot(  # Функция, которая создаёт график по заданным координатам
+        arguments,  # Значение аргумента (х) - переменная arguments (массив)
+        [math.sin(a) * math.sin(a/20.0) for a in arguments]  # Для всех значений аргумента а (из массива arguments) значении функции равно sin(a)*sin(a/20.0)
     )
-    mpp.show()
+    mpp.show()  # Вывод получившегося графика
