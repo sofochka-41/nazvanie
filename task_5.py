@@ -14,3 +14,11 @@ if (math.gcd(a,b) == my_gcd(a,b)):
     print(f'gcd({a},{b})=',my_gcd(a,b))
 else:
     print('Ошибка в вычислениях')
+
+a1 = '1100010'
+b1 = '1100000'
+for i in range(len(a1)):
+    if a1[i] != b1[i]:
+        break
+        print(i, len(a1))
+print(len('abcacbaabcc'))
