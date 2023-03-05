@@ -4,17 +4,15 @@ class Fib:
 
     class _Fib_iter:
         """Внутренний класс — итератор"""
+
         def __init__(self):
             self.i = 0
             self.j = 1
         
-        def __next__(self):
-            if self.i == 4:
-                raise StopIteration()
-            else: 
-                self.j = self.i + self.j
-                self.i = self.j - self.i
-                return self.j 
+        def __next__(self): 
+            self.j = self.i + self.j
+            self.i = self.j - self.i
+            return self.j 
 
     def __iter__(self):
         """Создать и вернуть итератор"""
