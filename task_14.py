@@ -12,13 +12,14 @@ class Fib:
             self.i = 0
             self.j = 1
         
-        @typechecked
-        def __next__(self): 
+        @typechecked 
+        def __next__(self) -> int: 
             self.j = self.i + self.j
             self.i = self.j - self.i
             return self.j 
 
-    def __iter__(self):
+    @typechecked 
+    def __iter__(self) -> int:
         """Создать и вернуть итератор"""
         return Fib._Fib_iter()
 
