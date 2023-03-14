@@ -19,7 +19,7 @@ class Fib:
             return self.j 
 
     @typechecked 
-    def __iter__(self) -> int:
+    def __iter__(self) -> '_Fib_iter':
         """Создать и вернуть итератор"""
         return Fib._Fib_iter()
 
