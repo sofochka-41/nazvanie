@@ -8,25 +8,40 @@ def gauss(a, b):
     b = b.copy()
 
     def forward():
-        # do something to a and b
-        for k in range(len(b)-1):
-            for i in range(k+1,len(b)):
-                t = a[i][k]/a[k][k]
-                b[i] = b[i] - (b[k] * t)
-                
-                for j in range(len(b)):
-                    a[i][j] = a[i][j] - (a[k][j] * t)  
-        
+    # do something to a and b
+        for i in range(len(a)):
+            # Находим максимальный элемент в столбце
+            max_el = abs(a[i][i])
+            max_row = i
+            for k in range(i + 1, len(a)):
+                if abs(a[k][i]) > max_el:
+                    max_el = abs(a[k][i])
+                    max_row = k
+            # Переставляем строки
+            for k in range(i, len(a)):
+                tmp = a[max_row][k]
+                a[max_row][k] = a[i][k]
+                a[i][k] = tmp
+            tmp = b[max_row]
+            b[max_row] = b[i]
+            b[i] = tmp
+            # Приводим к треугольному виду
+            for k in range(i + 1, len(a)):
+                c = -a[k][i] / a[i][i]
+                for j in range(i, len(a)):
+                    if i == j:
+                        a[k][j] = 0
+                    else:
+                        a[k][j] += c * a[i][j]
+                b[k] += c * b[i]
 
     def backward():
         x = numpy.zeros(len(b), dtype=float)
         # then do something to a and b
-        x[len(b)-1] = b[len(b)-1]/a[len(b)-1][len(b)-1]
-        for i in range(2,-1,-1):
-            sum = 0
-            for j in range(i+1, len(b)):
-                sum += a[i][j]*x[j]
-            x[i] = (b[i]-sum)/a[i][i]
+        for i in range(len(a) - 1, -1, -1):
+            x[i] = b[i] / a[i][i]
+            for k in range(i - 1, -1, -1):
+                b[k] -= a[k][i] * x[i]
         return x
 
     forward()
