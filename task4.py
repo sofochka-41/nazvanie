@@ -1,6 +1,6 @@
 import random
 def f(x):
-    return x**2 + 2*x + 1
+    return x**2 + 3*x + 1
 
 lower_limit = 0
 upper_limit = 2   
